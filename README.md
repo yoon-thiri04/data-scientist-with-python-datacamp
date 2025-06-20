@@ -1,11 +1,11 @@
+# data-scientist-with-python-datacamp
 
 This repository contains my personal notes, exercises, and completed assignments from the **[Data Scientist with Python](https://www.datacamp.com/tracks/data-scientist-with-python)** career track on [DataCamp](https://www.datacamp.com/).
 
 
 ---
 
-## 📘 Course Progress
-
+##  Course Progress
 
 - [x] **Introduction to Python**
 - [x] **Intermediate Python**
@@ -25,7 +25,7 @@ Each lesson notebook includes:
 
 ## 🛠️ Tools & Libraries Used
 
-- Python (3.13)
+- Python (3.13.3)
 - Jupyter Notebook
 - pandas, numpy
 - matplotlib, scikitlearn
@@ -33,7 +33,7 @@ Each lesson notebook includes:
 
 ---
 
-## 🔖 Notes
+##  Notes
 
 This is a self-study project. The material and exercises are based on DataCamp's curriculum, but the interpretations, annotations, and organization are my own.
 
