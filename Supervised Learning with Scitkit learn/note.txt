@@ -1,0 +1,59 @@
+How do we decide which model to use in the first place?
+The size of our dataset plays a role. Fewer features means a simpler model, and can reduce training time. Also, some models, such as Artificial Neural Networks, require a lot of data to perform well. We may need an interpretable model, so we can explain to stakeholders how predictions were made.
+Eg- linear regression, where we can calculate and interpret the model coefficients. Alternatively, flexibility might be important to get the most accurate predictions. Generally, flexible models make fewer assumptions about the data; for example, a KNN model does not assume a linear relationship between the features and the target.
+
+Regression models can be evaluated using the root mean squared error, or the R-squared value. Likewise, classification models can all be analyzed using accuracy, a confusion matrix and its associated metrics, or the ROC AUC. Therefore, one approach is to select several models and a metric, then evaluate their performance without any form of hyperparameter tuning.
+
+In this exercise, you will be solving a classification problem where the "popularity" column in the music_df dataset has been converted to binary values, with 1 representing popularity more than or equal to the median for the "popularity" column, and 0 indicating popularity below the median.
+
+Your task is to build and visualize the results of three different models to classify whether a song is popular or not.
+
+The data has been split, scaled, and preloaded for you as X_train_scaled, X_test_scaled, y_train, and y_test. Additionally, KNeighborsClassifier, DecisionTreeClassifier, and LogisticRegression have been imported.
+
+# Create models dictionary
+models = {"Logistic Regression": LogisticRegression(), "KNN": KNeighborsClassifier(), "Decision Tree Classifier": DecisionTreeClassifier()}
+results = []
+
+# Loop through the models' values
+for model in models.values():
+  
+  # Instantiate a KFold object
+  kf = KFold(n_splits=6, random_state=12, shuffle=True)
+  
+  # Perform cross-validation
+  cv_results = cross_val_score(model, X_train_scaled, y_train, cv=kf)
+  results.append(cv_results)
+plt.boxplot(results, labels=models.keys())
+plt.show()
+
+
+Pipeline for predicting song popularity
+For the final exercise, you will build a pipeline to impute missing values, scale features, and perform hyperparameter tuning of a logistic regression model. The aim is to find the best parameters and accuracy when predicting song genre!
+
+All the models and objects required to build the pipeline have been preloaded for you.
+
+# Create steps
+steps = [("imp_mean", SimpleImputer()), 
+         ("scaler", StandardScaler()), 
+         ("logreg", LogisticRegression())]
+
+# Set up pipeline
+pipeline = Pipeline(steps)
+params = {"logreg__solver": ["newton-cg", "saga", "lbfgs"],
+         "logreg__C": np.linspace(0.001, 1.0, 10)}
+
+# Create the GridSearchCV object
+tuning = GridSearchCV(pipeline, param_grid=params)
+tuning.fit(X_train, y_train)
+y_pred = tuning.predict(X_test)
+
+# Compute and print performance
+print("Tuned Logistic Regression Parameters: {}, Accuracy: {}".format(tuning.best_params_, tuning.score(X_test, y_test)))
+
+
+RMSE
+cv_results= cross_val_score(reg, X_train_scaled, y_train, cv=kf,scoring='neg_mean_squared_error') 
+print(cv_results)
+
+# evaluate the rmse by taking the squared root of neg cv 
+rmse=np.sqrt(- cv_results)

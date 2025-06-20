@@ -1,0 +1,35 @@
+What is Overfitting?
+
+Definition: Overfitting happens when a model performs exceptionally well on the training data but poorly on the validation or test data. This means the model has become too complex and has learned not just the underlying patterns but also the noise and random fluctuations in the training data.
+
+Symptoms:
+
+High Accuracy on Training Data: The model shows very high accuracy or performance metrics on the training dataset.
+Poor Accuracy on Test Data: The model’s performance drops significantly when evaluated on a validation or test dataset that it hasn’t seen before.
+
+Causes of Overfitting:
+Model Complexity: Complex models with too many parameters can fit the training data very closely, capturing noise as if it were a pattern. For example, a high-degree polynomial regression can fit the training data very closely, but it may not generalize well.
+
+Insufficient Training Data: With too little data, the model may not have enough examples to learn the true underlying patterns, leading to a model that memorizes the training data instead.
+
+Noise in Data: If the training data contains a lot of noise or outliers, a model might learn this noise as if it were a signal, which does not generalize to new data.
+
+Too Many Features: Including too many features or irrelevant features can cause a model to learn spurious patterns that do not generalize.
+
+How to Detect Overfitting:
+Cross-Validation: Use cross-validation techniques to evaluate the model’s performance on different subsets of the data. A significant difference between training and validation performance can indicate overfitting.
+
+Performance Metrics: Compare the performance metrics (accuracy, precision, recall, etc.) on training and validation/test sets. A large gap often suggests overfitting.
+
+How to Prevent Overfitting:
+Regularization: Apply regularization techniques like L1 (Lasso) and L2 (Ridge) regularization to penalize large coefficients and prevent the model from becoming too complex. In logistic regression, penalty and C are used for regularization.
+
+Simplify the Model: Use a simpler model with fewer parameters. For instance, reduce the complexity of polynomial terms or feature interactions.
+
+Increase Training Data: Collect more data to provide a more representative sample of the problem space. This helps the model learn more generalized patterns.
+
+Feature Selection: Remove irrelevant or redundant features that do not contribute to the model’s predictive power. Feature selection techniques can help with this.
+
+Early Stopping: Monitor the model’s performance on a validation set and stop training when the performance starts to degrade, even if the training accuracy continues to improve.
+
+Cross-Validation: Use techniques like k-fold cross-validation to evaluate the model’s performance on different subsets of the data. This helps ensure that the model generalizes well to unseen data.
